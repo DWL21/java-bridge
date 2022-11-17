@@ -44,4 +44,27 @@ class BridgeGameTest {
             assertThat(actual.getPosition()).isEqualTo(new Position(0));
         }
     }
+
+    @Nested
+    @DisplayName("retry 메서드는")
+    class Retry {
+
+        private BridgeGame bridgeGame;
+
+        @BeforeEach
+        void setUp() {
+            List<String> spaces = Stream.of(U, D, U)
+                .map(Space::name)
+                .collect(Collectors.toUnmodifiableList());
+            bridgeGame = new BridgeGame(spaces).move(U);
+        }
+
+        @Test
+        @DisplayName("초기위치인 다리 건너기 게임을 반환한다.")
+        void success() {
+            BridgeGame actual = bridgeGame.retry();
+
+            assertThat(actual.getPosition()).isEqualTo(new Position(0));
+        }
+    }
 }
