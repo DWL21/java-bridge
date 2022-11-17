@@ -27,7 +27,7 @@ public class BridgeMaker {
         validateBridgeSize(size);
         List<Space> spaces = pickSpaces(size);
         return spaces.stream()
-            .map(Space::getValue)
+            .map(Space::name)
             .collect(Collectors.toUnmodifiableList());
     }
 
@@ -45,7 +45,7 @@ public class BridgeMaker {
         List<Space> spaces = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int number = bridgeNumberGenerator.generate();
-            spaces.add(Space.of(number));
+            spaces.add(Space.from(number));
         }
         return spaces;
     }

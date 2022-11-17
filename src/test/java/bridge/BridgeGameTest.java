@@ -1,7 +1,7 @@
 package bridge;
 
-import static bridge.Space.DOWN;
-import static bridge.Space.UP;
+import static bridge.Space.D;
+import static bridge.Space.U;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -22,8 +22,8 @@ class BridgeGameTest {
 
         @BeforeEach
         void setUp() {
-            List<String> spaces = Stream.of(UP, DOWN, UP)
-                .map(Space::getValue)
+            List<String> spaces = Stream.of(U, D, U)
+                .map(Space::name)
                 .collect(Collectors.toUnmodifiableList());
             bridgeGame = new BridgeGame(spaces);
         }
@@ -31,20 +31,17 @@ class BridgeGameTest {
         @Test
         @DisplayName("이동할 수 있는 입력이면 다음 칸으로 이동한다.")
         void success() {
-            bridgeGame.move(UP);
+            BridgeGame actual = bridgeGame.move(U);
 
-            Position actual = bridgeGame.getPosition();
-            assertThat(actual).isEqualTo(new Position(1));
+            assertThat(actual.getPosition()).isEqualTo(new Position(1));
         }
 
         @Test
         @DisplayName("이동할 수 없는 입력이면 다음 칸으로 이동하지 않는다.")
         void fail() {
-            bridgeGame.move(DOWN);
+            BridgeGame actual = bridgeGame.move(D);
 
-            Position actual = bridgeGame.getPosition();
-            assertThat(actual).isEqualTo(new Position(0));
+            assertThat(actual.getPosition()).isEqualTo(new Position(0));
         }
     }
-
 }

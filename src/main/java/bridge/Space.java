@@ -4,26 +4,20 @@ import java.util.Arrays;
 
 public enum Space {
 
-    UP(0, "U"),
-    DOWN(1, "D"),
+    U(0),
+    D(1),
     ;
 
-    private final int key;
-    private final String value;
+    private final int value;
 
-    Space(int key, String value) {
-        this.key = key;
+    Space(final int value) {
         this.value = value;
     }
 
-    public static Space of(int key) {
+    public static Space from(final int value) {
         return Arrays.stream(values())
-            .filter(it -> it.key == key)
+            .filter(it -> it.value == value)
             .findFirst()
             .orElseThrow(() -> new IllegalStateException("[ERROR] 올바른 랜덤 숫자가 아닙니다."));
-    }
-
-    public String getValue() {
-        return value;
     }
 }
