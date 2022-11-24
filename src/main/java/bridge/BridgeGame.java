@@ -45,7 +45,19 @@ public class BridgeGame {
         return new BridgeGame(this.spaces);
     }
 
+    public boolean isFailedMoving(BridgeGame bridgeGame) {
+        return this.position == bridgeGame.position;
+    }
+
+    public boolean isFinished() {
+        return this.position.equals(new Position(spaces.size()));
+    }
+
     public Position getPosition() {
         return position;
+    }
+
+    public List<String> showTryingSpaces() {
+        return spaces.subList(0, this.position.getValue());
     }
 }
